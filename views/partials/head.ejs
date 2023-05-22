@@ -1,0 +1,156 @@
+
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Starred | Better feedback. Actionable insights.</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="/stylesheets/style.css" />  
+	<script type="text/javascript" >
+        $(document).ready(function(){
+
+
+        $("#toggle-1, .t1").click(function(){
+            if ($("#bi2, #bi3, #bi4, #bi5, #bi6, #bi7, #bi8, #bi9, #bi10").is(':visible')) {
+                $(".bi").hide();	
+            };
+            $("#bi1").toggle();
+        });
+        $("#toggle-2, .t2").click(function(){
+            if ($("#bi1, #bi3, #bi4, #bi5, #bi6, #bi7, #bi8, #bi9, #bi10").is(':visible')) {
+                $(".bi").hide();	
+            };
+            $("#bi2").toggle();
+        });
+        $("#toggle-3, .t3").click(function(){
+            if ($("#bi1, #bi2, #bi4, #bi5, #bi6, #bi7, #bi8, #bi9, #bi10").is(':visible')) {
+                $(".bi").hide();	
+            };
+            $("#bi3").toggle();
+        });
+        $("#toggle-4, .t4").click(function(){
+            if ($("#bi1, #bi2, #bi3, #bi5, #bi6, #bi7, #bi8, #bi9, #bi10").is(':visible')) {
+                $(".bi").hide();	
+            };
+            $("#bi4").toggle();
+        });
+        $("#toggle-5, .t5").click(function(){
+            if ($("#bi1, #bi2, #bi3, #bi4, #bi6, #bi7, #bi8, #bi9, #bi10").is(':visible')) {
+                $(".bi").hide();	
+            };
+            $("#bi5").toggle();
+            $("#toggle-5").removeClass("pulse");
+        });
+        $("#toggle-6, .t6").click(function(){
+            if ($("#bi1, #bi2, #bi3, #bi4, #bi5, #bi7, #bi8, #bi9, #bi10").is(':visible')) {
+                $(".bi").hide();	
+            };
+            $("#bi6").toggle();
+        });
+        $("#toggle-7, .t7").click(function(){
+            if ($("#bi1, #bi2, #bi3, #bi4, #bi5, #bi6, #bi8, #bi9, #bi10").is(':visible')) {
+                $(".bi").hide();	
+            };
+            $("#bi7").toggle();
+        });
+        $("#toggle-8, .t8").click(function(){
+            if ($("#bi1, #bi2, #bi3, #bi4, #bi5, #bi6, #bi7, #bi9, #bi10").is(':visible')) {
+                $(".bi").hide();	
+            };
+            $("#bi8").toggle();
+        });
+        $("#toggle-9, .t9").click(function(){
+            if ($("#bi1, #bi2, #bi3, #bi4, #bi5, #bi6, #bi7, #bi8, #bi10").is(':visible')) {
+                $(".bi").hide();	
+            };
+            $("#bi9").toggle();
+        });
+        $("#toggle-10, .t10").click(function(){
+            if ($("#bi1, #bi2, #bi3, #bi4, #bi5, #bi6, #bi7, #bi8, #bi9").is(':visible')) {
+                $(".bi").hide();	
+            };
+            $("#bi10").toggle();
+        });
+    
+    
+    
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 100) {
+                $('.section-paragraph, .section-title').addClass("come-in");
+            }   
+            if ($(this).scrollTop() > 300) {
+                $('.subtitle, .subtext').addClass("slide");
+            }
+        });
+      
+      // Animations on scroll //
+    
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 100) {
+                $('.section-paragraph, .section-title').addClass("come-in");
+            }   
+            if ($(this).scrollTop() > 300) {
+                $('.subtitle, .subtext').addClass("slide");
+            }
+        });
+    
+        var TxtType = function(el, toRotate, period) {
+            this.toRotate = toRotate;
+            this.el = el;
+            this.loopNum = 0;
+            this.period = parseInt(period, 10) || 1000;
+            this.txt = '';
+            this.tick();
+            this.isDeleting = false;
+        };
+    
+        TxtType.prototype.tick = function() {
+            var i = this.loopNum % this.toRotate.length;
+            var fullTxt = this.toRotate[i];
+    
+            if (this.isDeleting) {
+            this.txt = fullTxt.substring(0, this.txt.length - 1);
+            } else {
+            this.txt = fullTxt.substring(0, this.txt.length + 1);
+            }
+    
+            this.el.innerHTML = '<span class="wrap">'+this.txt+'</span>';
+    
+            var that = this;
+            var delta = 200 - Math.random() * 100;
+    
+            if (this.isDeleting) { delta /= 2; }
+    
+            if (!this.isDeleting && this.txt === fullTxt) {
+            delta = this.period;
+            this.isDeleting = true;
+            } else if (this.isDeleting && this.txt === '') {
+            this.isDeleting = false;
+            this.loopNum++;
+            delta = 500;
+            }
+    
+            setTimeout(function() {
+            that.tick();
+            }, delta);
+        };
+    
+        window.onload = function() {
+            var elements = document.getElementsByClassName('typewrite');
+            for (var i=0; i<elements.length; i++) {
+                var toRotate = elements[i].getAttribute('data-type');
+                var period = elements[i].getAttribute('data-period');
+                if (toRotate) {
+                  new TxtType(elements[i], JSON.parse(toRotate), period);
+                }
+            }
+            // INJECT CSS
+            var css = document.createElement("style");
+            css.type = "text/css";
+            css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #3a3a3a}";
+            document.body.appendChild(css);
+        };
+    
+    });
+    </script>
+	<link href="https://fonts.googleapis.com/css?family=Lato:200,300,400,700" rel="stylesheet">
+  <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
